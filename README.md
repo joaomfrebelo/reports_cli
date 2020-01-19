@@ -31,7 +31,7 @@ https://github.com/joaomfrebelo/reports_core
 
 Use the Jitpack
 
-https://jitpack.io/#joaomfrebelo/reports_core
+https://jitpack.io/#joaomfrebelo/reports_cli
 
 For maven prjects
 
