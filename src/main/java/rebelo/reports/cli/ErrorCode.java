@@ -25,7 +25,7 @@ package rebelo.reports.cli;
 public class ErrorCode {
        
     /**
-     * unedefined error
+     * no error
      */
     public static final Integer NO_ERROR = 0;
     

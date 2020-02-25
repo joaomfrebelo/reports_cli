@@ -628,7 +628,7 @@ public final class Generate implements Callable<Integer> {
         String msg = null;
         ArrayList<JasperPrint> list = new ArrayList<>();
         Report report = null;
-
+        
         int x = 0;
         for (File propFile : xmlFiles) {
             if (propFile.getAbsolutePath().endsWith(".xml") == false) {
@@ -673,7 +673,7 @@ public final class Generate implements Callable<Integer> {
             LOG.traceExit();
             throw new CliException(msg);
         }
-
+                
         boolean alldel = true;
         if (this.delFile || this.delDir) {
             for (File propFile : xmlFiles) {
