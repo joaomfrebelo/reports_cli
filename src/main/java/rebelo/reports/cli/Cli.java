@@ -38,6 +38,14 @@ public class Cli {
     public static void main(String[] args) {
 
         try {
+            
+            if(args.length > 0 && args[0].equalsIgnoreCase("compiler")){
+                Compiler compiler = new Compiler();
+                CommandLine compcmd = new CommandLine(compiler);
+                compcmd.execute(args);
+                System.exit(0);
+            }
+            
             Generate generate = new Generate();
             CommandLine cmd = new CommandLine(generate);
             cmd.parseArgs(args);

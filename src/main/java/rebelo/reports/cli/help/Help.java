@@ -35,5 +35,8 @@ public class Help {
         System.out.println("-d or --dir /path/to/xml_file_dir");
         System.out.println("-d or --dir option will do for the same file the export of all reports defined in all xml files in the directories");
         System.out.println("");
+        //compiler
+        System.out.println("To compile a jrxml file to a jasper file or revert a jasper file to a jrxml");        
+        System.out.println("Usage: java -jar RReports_cli.jar compiler -in=/path/src/file -out=/path/dest/file");  
     }
 }
