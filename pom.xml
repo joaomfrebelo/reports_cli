@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>rebelo</groupId>
     <artifactId>reports_cli</artifactId>
-    <version>1.1-Beta-4</version>
+    <version>1.2</version>
     <packaging>jar</packaging>
     <description>
         Rebelo Reports is a middleware to use the Jasper Reports Framework in 
@@ -181,7 +181,7 @@
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
-            <version>2.11.2</version>
+            <version>2.17.1</version>
         </dependency>
         <dependency>
             <groupId>info.picocli</groupId>

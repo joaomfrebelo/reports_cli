@@ -63,7 +63,7 @@ public final class Generate implements Callable<Integer> {
     protected static final Logger LOG = LogManager.getLogger();
 
     /**
-     * The xml file conteined the properties of the report to be generated
+     * The xml file contained the properties of the report to be generated
      */
     @Option(
             names = {"-f", "--file"},
@@ -72,7 +72,7 @@ public final class Generate implements Callable<Integer> {
     private File file;
 
     /**
-     * The directory conteined all xml files containing the properties of the
+     * The directory contained all xml files containing the properties of the
      * report to be generated.<br>
      * All reports, one of each xml file will be exported in only one report,
      * one per page
@@ -110,7 +110,7 @@ public final class Generate implements Callable<Integer> {
 
     /**
      * Output file base dir. The base dir for output file report if not null it
-     * will be preppend
+     * will be append
      */
     @Option(
             names = {"-o", "-out"},
@@ -120,8 +120,8 @@ public final class Generate implements Callable<Integer> {
     private String outputBaseDir = null;
 
     /**
-     * Jaster report file base dir. The base dir for the jasper report file if
-     * not null it will be preppend
+     * Jasper report file base dir. The base dir for the jasper report file if
+     * not null it will be append
      */
     @Option(
             names = {"-j", "-jasper"},
@@ -499,7 +499,7 @@ public final class Generate implements Callable<Integer> {
             LOG.catching(e);
             msg = e.getMessage();
             exitCode = ErrorCode.CLI_DEL_FILE_ERROR;
-        }catch(SignPdfException e){
+        } catch (SignPdfException e) {
             LOG.catching(e);
             msg = e.getMessage();
             exitCode = ErrorCode.PDF_SIGNING_ERROR;
@@ -542,7 +542,7 @@ public final class Generate implements Callable<Integer> {
             InstantiationException,
             SQLException, IllegalAccessException,
             JRException, RRException,
-            PrinterNotFoundException, 
+            PrinterNotFoundException,
             CliDelFileException, SignPdfException {
 
         LOG.traceEntry("File: {}", file);
@@ -579,6 +579,22 @@ public final class Generate implements Callable<Integer> {
                 LOG.traceExit();
                 throw new CliDelFileException(msg);
             }
+        }
+
+        if (delDir) {
+            try {
+                java.nio.file.Files.delete(
+                        java.nio.file.Paths.get(file.getParent())
+                );
+                LOG.debug(() -> String.format(
+                        "Directory '%s' was deleted", file.getParent()));
+            } catch (IOException e) {
+                LOG.catching(e);
+                LOG.debug(() -> String.format(
+                        "Report was exported but directory '%s' it was not deleted with error '%s'",
+                        file.getParent(), e.getMessage()));
+            }
+
         }
 
         LOG.traceExit();
@@ -619,16 +635,16 @@ public final class Generate implements Callable<Integer> {
             SQLException, IllegalAccessException,
             JRException,
             RRException,
-            PrinterNotFoundException, CliException, 
+            PrinterNotFoundException, CliException,
             CliDelFileException, SignPdfException {
-        
+
         LOG.traceEntry("Directory: {}, with '{}' files to parse",
                 dir, xmlFiles.size());
 
         String msg = null;
         ArrayList<JasperPrint> list = new ArrayList<>();
         Report report = null;
-        
+
         int x = 0;
         for (File propFile : xmlFiles) {
             if (propFile.getAbsolutePath().endsWith(".xml") == false) {
@@ -673,7 +689,7 @@ public final class Generate implements Callable<Integer> {
             LOG.traceExit();
             throw new CliException(msg);
         }
-                
+
         boolean alldel = true;
         if (this.delFile || this.delDir) {
             for (File propFile : xmlFiles) {
@@ -719,6 +735,9 @@ public final class Generate implements Callable<Integer> {
                 LOG.traceExit();
                 throw new CliDelFileException(msg);
             }
+        } else {
+            LOG.debug(() -> String.format(
+                    "Directory '%s' was not set to delete", dir.getPath()));
         }
 
         LOG.traceExit();

@@ -18,7 +18,6 @@ package rebelo.reports.cli;
 
 import java.io.File;
 import net.sf.jasperreports.engine.JRException;
-import org.apache.logging.log4j.Level;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -32,22 +31,22 @@ import picocli.CommandLine;
  * @author João Rebelo
  */
 public class CompilerTest {
-    
+
     public CompilerTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -88,36 +87,36 @@ public class CompilerTest {
         File jrxmlFile = new File(resdir + "sakila.jrxml");
         File compFile = new File(resdir + "compiled.jasper");
         File revertedFile = new File(resdir + "reverted.jrxml");
-        
-        if(compFile.exists()){
+
+        if (compFile.exists()) {
             compFile.delete();
         }
-        
-        if(revertedFile.delete()){
+
+        if (revertedFile.delete()) {
             revertedFile.delete();
         }
-        
+
         String[] argsJrxmlToJasper = {
-            "compiler"
-           , "-in="+ jrxmlFile.getAbsolutePath()  
-           , "-out=" +compFile.getAbsolutePath()
+            "compiler",
+             "-in=" + jrxmlFile.getAbsolutePath(),
+             "-out=" + compFile.getAbsolutePath()
         };
         Compiler comp = new Compiler();
         new CommandLine(comp).execute(argsJrxmlToJasper);
-        
-         if(compFile.exists() == false){
+
+        if (compFile.exists() == false) {
             fail("Failed to compile the file");
         }
-        
-         String[] argsJasperToJrxml = {
-            "compiler"
-           , "-in="+compFile.getAbsolutePath() 
-           , "-out="+revertedFile.getAbsolutePath()
+
+        String[] argsJasperToJrxml = {
+            "compiler",
+             "-in=" + compFile.getAbsolutePath(),
+             "-out=" + revertedFile.getAbsolutePath()
         };
         Compiler comprev = new Compiler();
         new CommandLine(comprev).execute(argsJasperToJrxml);
-         
-        if(revertedFile.exists() == false){
+
+        if (revertedFile.exists() == false) {
             fail("Failed to revert file the file");
         }
     }
@@ -126,37 +125,37 @@ public class CompilerTest {
      * Test of CompileJrxmlFile and reverJasperFile method, of class Compiler.
      */
     @Test
-    public void testCompileJrxmlFileAndReverJasperFile() throws JRException{
+    public void testCompileJrxmlFileAndReverJasperFile() throws JRException {
         String resdir = getClass().getClassLoader().getResource("./reports/sakila/").getPath();
         File jrxmlFile = new File(resdir + "sakila.jrxml");
         File compFile = new File(resdir + "compiled.jasper");
         File revertedFile = new File(resdir + "reverted.jrxml");
 
-        if(compFile.exists()){
+        if (compFile.exists()) {
             compFile.delete();
         }
-        
-        if(revertedFile.delete()){
+
+        if (revertedFile.delete()) {
             revertedFile.delete();
         }
-        
+
         Compiler comp = new Compiler();
         comp.setInFile(jrxmlFile);
         comp.setOutFile(compFile);
         comp.compileJrxmlFile();
-        
-        if(compFile.exists() == false){
+
+        if (compFile.exists() == false) {
             fail("Failed to compile the file");
         }
-        
+
         comp.setInFile(compFile);
         comp.setOutFile(revertedFile);
         comp.reverJasperFile();
-        
-        if(revertedFile.exists() == false){
+
+        if (revertedFile.exists() == false) {
             fail("Failed to revert file the file");
         }
-        
+
     }
-    
+
 }
