@@ -11,3 +11,4 @@
 /target
 /src/test/resources/reports/MyReports/.project*
 /src/assembly/**
+reports_cli.iml

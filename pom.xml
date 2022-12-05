@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>rebelo</groupId>
     <artifactId>reports_cli</artifactId>
-    <version>1.2</version>
+    <version>1.2.1</version>
     <packaging>jar</packaging>
     <description>
-        Rebelo Reports is a middleware to use the Jasper Reports Framework in 
-        the cases that you can not use the Jasper Reports embeded in you software, 
+        Rebelo Reports is a middleware to use the Jasper Reports Framework in
+        the cases that you can not use the Jasper Reports embedded in you software,
         in cases that you software is not java or there are incompatibility of licences.
 
-        The Rebelo Reports Cli is the module to run the Rebelo Reports from the command prompt, 
+        The Rebelo Reports Cli is the module to run the Rebelo Reports from the command prompt,
         running Rebelo Reports Cli is possible to integrate with any technology where
-        you can execute external commands, example among others: 
-        PHP exec(command, output, return_var), 
+        you can execute external commands, example among others:
+        PHP exec(command, output, return_var),
         Or C# System.Diagnostics.Process.Start("PATH to jre", "-jar RRreports.jar Command Line Arguments");
     </description>
     <url>https://github.com/joaomfrebelo/reports_cli</url>
@@ -97,7 +97,7 @@
                     </execution>
                     <execution>
                         <id>attach-javadoc</id>
-                        <goals />
+                        <goals/>
                     </execution>
                 </executions>
             </plugin>
@@ -107,7 +107,7 @@
                 <configuration>
                     <useTransitiveDependencies>true</useTransitiveDependencies>
                     <includeDependencies>true</includeDependencies>
-                    <archive>             
+                    <archive>
                         <manifest>
                             <mainClass>rebelo.reports.cli.Cli</mainClass>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
@@ -116,7 +116,7 @@
                         <manifestEntries>
                             <GroupId>${project.groupId}</GroupId>
                             <ArtifactId>${project.artifactId}</ArtifactId>
-                            <Version>${project.version}</Version>  
+                            <Version>${project.version}</Version>
                         </manifestEntries>
                     </archive>
                     <descriptorRefs>
@@ -137,8 +137,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.2.0</version>
-                <configuration>  
-                    <archive>             
+                <configuration>
+                    <archive>
                         <manifest>
                             <mainClass>rebelo.reports.cli.Cli</mainClass>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
@@ -147,7 +147,7 @@
                         <manifestEntries>
                             <GroupId>${project.groupId}</GroupId>
                             <ArtifactId>${project.artifactId}</ArtifactId>
-                            <Version>${project.version}</Version>  
+                            <Version>${project.version}</Version>
                         </manifestEntries>
                     </archive>
                 </configuration>
@@ -176,23 +176,17 @@
         <dependency>
             <groupId>com.github.joaomfrebelo</groupId>
             <artifactId>reports_core</artifactId>
-            <version>1.5.0-BETA-1</version>
+            <version>1.5.2</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
-            <version>2.17.1</version>
+            <version>2.19.0</version>
         </dependency>
         <dependency>
             <groupId>info.picocli</groupId>
             <artifactId>picocli</artifactId>
-            <version>4.3.2</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-            <version>2.0.1.Final</version>
-            <type>jar</type>
+            <version>4.6.1</version>
         </dependency>
         <dependency>
             <!-- For read MANIFEST.MF -->
@@ -228,6 +222,12 @@
             <artifactId>jexample</artifactId>
             <version>4.4-378</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>2.0.1.Final</version>
+            <type>jar</type>
         </dependency>
     </dependencies>
 </project>
